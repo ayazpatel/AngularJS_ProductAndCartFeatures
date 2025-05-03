@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="itemApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Filter with Date Range</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-controller="ItemController">
+
+<div class="container">
+  <h2>Items</h2>
+
+  <!-- Add New Item -->
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong>Add New Item</strong></div>
+    <div class="panel-body">
+      <div class="form-inline">
+        <input type="text" class="form-control" placeholder="Name" ng-model="newItem.name">
+        <select class="form-control" ng-model="newItem.category">
+          <option value="">Select Category</option>
+          <option value="music">Music</option>
+          <option value="film">Film</option>
+          <option value="tv">TV</option>
+        </select>
+        <input type="text" class="form-control" placeholder="Date (dd/mm/yyyy)" ng-model="newItem.date">
+        <button class="btn btn-primary" ng-click="addItem()">Add Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Filters</h4>
+      <div>
+        <label>Category</label><br>
+        <button class="btn btn-default btn-sm" ng-click="filterCategory=''">All</button>
+        <button class="btn btn-default btn-sm" ng-click="filterCategory='music'">Music</button>
+        <button class="btn btn-default btn-sm" ng-click="filterCategory='film'">Film</button>
+        <button class="btn btn-default btn-sm" ng-click="filterCategory='tv'">TV</button>
+      </div>
+      <br>
+
+      <label>Search by Name</label>
+      <input type="text" class="form-control" ng-model="searchName" placeholder="Search">
+
+      <br><br>
+      <label>Start Date</label>
+      <input type="date" class="form-control" ng-model="startDate">
+
+      <label>End Date</label>
+      <input type="date" class="form-control" ng-model="endDate">
+    </div>
+
+    <div class="col-md-9">
+      <!-- Table -->
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in filteredItems = (items | filter:filterByAll)">
+            <td>{{$index + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p ng-if="filteredItems.length === 0">No items found.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  angular.module('itemApp', []).controller('ItemController', function($scope) {
+    $scope.items = [
+      { name: 'The Beatles', category: 'music', date: '2014-08-14' },
+      { name: 'Shawshank Redemption', category: 'film', date: '2014-08-13' },
+      { name: 'Big Bang Theory', category: 'tv', date: '2014-08-11' },
+      { name: 'Quantic', category: 'music', date: '2014-08-09' },
+      { name: 'Taxi', category: 'film', date: '2014-08-07' },
+      { name: 'Simpsons', category: 'tv', date: '2014-07-26' },
+      { name: 'Artic Monkeys', category: 'music', date: '2014-07-25' },
+      { name: 'Oldboy', category: 'film', date: '2014-07-24' },
+      { name: 'Friends', category: 'tv', date: '2014-07-23' },
+      { name: 'Bonobo', category: 'music', date: '2014-07-22' }
+    ];
+
+    $scope.newItem = {};
+    $scope.filterCategory = '';
+    $scope.searchName = '';
+    $scope.startDate = '';
+    $scope.endDate = '';
+
+    $scope.addItem = function() {
+      if ($scope.newItem.name && $scope.newItem.category && $scope.newItem.date) {
+        const newDate = new Date($scope.newItem.date);
+        if (!isNaN(newDate)) {
+          $scope.items.push({
+            name: $scope.newItem.name,
+            category: $scope.newItem.category,
+            date: $scope.newItem.date
+          });
+          $scope.newItem = {};
+        } else {
+          alert("Enter a valid date in yyyy-mm-dd format.");
+        }
+      } else {
+        alert("Please fill in all fields!");
+      }
+    };
+
+    $scope.filterByAll = function(item) {
+      const nameMatch = !$scope.searchName || item.name.toLowerCase().includes($scope.searchName.toLowerCase());
+      const categoryMatch = !$scope.filterCategory || item.category === $scope.filterCategory;
+
+      const itemDate = new Date(item.date);
+      const start = $scope.startDate ? new Date($scope.startDate) : null;
+      const end = $scope.endDate ? new Date($scope.endDate) : null;
+
+      const dateMatch = (!start || itemDate >= start) && (!end || itemDate <= end);
+
+      return nameMatch && categoryMatch && dateMatch;
+    };
+  });
+</script>
+
+</body>
+</html>
