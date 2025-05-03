@@ -29,6 +29,15 @@
           <button type="button" class="btn btn-primary" ng-click="show_cart()">View Cart</button>
         </div>
       </header>
+
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" ng-model="search123">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
     </div>
 
     <!-- Main-->
@@ -51,7 +60,7 @@
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             
-            <div class="col" ng-repeat="item in product">
+            <div class="col" ng-repeat="item in product | filter:{name: search123}">
               <div class="card shadow-sm">
                 <img src="{{item.image}}" alt="" style="max-height: 250px;">
                 <div class="card-body">

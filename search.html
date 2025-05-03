@@ -1,0 +1,13 @@
+<body ng-controller = "myctrl">
+  <h1 style="margin-left: 35%;">Student Management System</h1>
+  <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" ng-model="searchexamno"> le lwade
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <div ng-repeat ="student in students | filter:{examNo : searchexamno}"> le lawde
+  <h2 style="margin-top: 100px;">Exam No : {{student.examNo}}</h2>
+  <h3>Name : {{student.name}}</h3>
