@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jewellery Shop</title>
+    <link href="./assets/res/bootstrap.min.css" rel="stylesheet">
+    <script src="./assets/res/angular.min.js"></script>
+  </head>
+  <body ng-controller="myCtrl">
+
+    <!-- header -->
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+          <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+        </div>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="./index.html" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="./about.html" class="nav-link px-2">About</a></li>
+          <li><a href="./contact.html" class="nav-link px-2">Contact</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-primary" ng-click="showCart()">Cart</button>
+        </div>
+      </header>
+    </div>
+
+    <!-- main -->
+    <div class="container" style="min-height: 100px;">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <div class="col" ng-repeat="d in data">
+          <div class="card shadow-sm">
+            <img src="{{d.image}}" alt="img" style="max-height: 250px;"/>
+            <div class="card-body">
+              <h5 class="card-title">{{d.name}}</h5>
+              <p class="card-text">{{d.description}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="viewData(d)">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="addCart(d)">Add To Cart</button>
+                </div>
+                <small class="text-body-secondary">$ {{d.price}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Cart Modal-->
+     <!-- Vertically centered scrollable modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="cartModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped">
+              <thead>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in cart">
+                  <td>{{item.id}}</td>
+                  <td>
+                    <img src="{{item.image}}" height="50px" width="100px" alt="img"/>
+                  </td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td>{{item.quantity * item.price}}</td>
+                  <td>
+                    <button class="btn btn-warning" ng-click="reduceCart(item)">Decrease</button>
+                    <button class="btn btn-primary" ng-click="addCart(item)">Increase</button>
+                    <button class="btn btn-danger"
+                    ng-click="removeCart(item)">Remove</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-click="hideCart()">Close</button>
+            <button type="button" class="btn btn-primary">Total Payment: $ {{grandTotal}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- footer -->
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+            <svg class="bi" width="30" height="24" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Jewellery Shop, All rights reserved</span>
+        </div>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Instagram"><svg class="bi" width="24" height="24" aria-hidden="true"><use xlink:href="#instagram"></use></svg></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Facebook"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./assets/res/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

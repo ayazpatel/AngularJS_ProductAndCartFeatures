@@ -1,0 +1,44 @@
+[
+  {
+    "id": 101,
+    "name": "Wireless Headphones",
+    "description": "Noise-cancelling over-ear Bluetooth headphones with 20 hours battery life.",
+    "price": 129.99,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  },
+  {
+    "id": 102,
+    "name": "Smartphone",
+    "description": "6.5-inch AMOLED display, 128GB storage, 5G support.",
+    "price": 699.00,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  },
+  {
+    "id": 103,
+    "name": "Gaming Laptop",
+    "description": "RTX 3060, 16GB RAM, 512GB SSD, 144Hz display.",
+    "price": 1199.99,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  },
+  {
+    "id": 104,
+    "name": "Wrist Watch",
+    "description": "Classic leather analog watch with waterproof design.",
+    "price": 89.50,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  },
+  {
+    "id": 105,
+    "name": "Office Chair",
+    "description": "Ergonomic mesh chair with lumbar support and adjustable height.",
+    "price": 174.75,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  },
+  {
+    "id": 106,
+    "name": "Bluetooth Speaker",
+    "description": "Portable speaker with 360° sound and 10-hour battery life.",
+    "price": 59.99,
+    "image": "https://cdn.pixabay.com/photo/2025/03/06/01/39/desert-9449657_1280.jpg"
+  }
+]

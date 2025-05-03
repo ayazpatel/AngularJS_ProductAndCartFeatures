@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="./assets/res/bootstrap.min.css" rel="stylesheet">
+    <script src="./assets/res/angular.min.js"></script>
+  </head>
+  <body ng-controller="ctrl">
+    <!-- header-->
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+          <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+        </div>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2">Features</a></li>
+          <li><a href="#" class="nav-link px-2">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2">About</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-primary" ng-click="show_cart()">View Cart</button>
+        </div>
+      </header>
+    </div>
+
+    <!-- Main-->
+    <main>
+
+      <!-- <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Album example</h1>
+            <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p>
+              <a href="#" class="btn btn-primary my-2">Main call to action</a>
+              <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+          </div>
+        </div>
+      </section> -->
+    
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            
+            <div class="col" ng-repeat="item in product">
+              <div class="card shadow-sm">
+                <img src="{{item.image}}" alt="" style="max-height: 250px;">
+                <div class="card-body">
+                  <h5>{{item.name}}</h5>
+                  <p class="card-text">{{item.description}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View Item</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="cart_add(item)">Add To Cart</button>
+                    </div>
+                    <small class="text-body-secondary">$ {{item.price}}</small>
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+          </div>
+        </div>
+      </div>
+    
+    </main>
+
+
+    <!-- Cart Model-->
+    <div class="modal fade" id="cartModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">eCommerce Store - Shopping Cart</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped">
+              <thead>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in cart">
+                  <th>{{item.id}}</th>
+                  <th><img src="{{item.image}}" alt="" height="100px" width="150px"></th>
+                  <th>{{item.name}}</th>
+                  <th>{{item.qty}}</th>
+                  <th>{{(item.qty * item.price).toFixed(2)}}</th>
+                  <th>
+                    <button class="btn btn-warning" ng-click="cart_reduce(item)">
+                      Reduce
+                    </button>
+                    <button class="btn btn-primary" ng-click="cart_add(item)">
+                      Add
+                    </button>
+                    <button class="btn btn-danger" ng-click="cart_remove(item)">
+                      Delete
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-click="hide_cart()">Close</button>
+            <button type="button" class="btn btn-primary">Pay: $ {{grandTotal}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Footer-->
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+            <svg class="bi" width="30" height="24" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Company, Inc</span>
+        </div>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Instagram"><svg class="bi" width="24" height="24" aria-hidden="true"><use xlink:href="#instagram"></use></svg></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Facebook"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+        </ul>
+      </footer>
+    </div>
+
+
+
+
+    <script src="./app.js"></script>
+    <script src="./assets/res/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
