@@ -46,21 +46,21 @@ Each app is purely frontend—just open its `index.html` in a browser (or serve 
 ## Project Structure
 AngularJS_ProductAndCartFeatures/
 ├── AngularJS_JwelleryShop/
-│   ├── assets/               # images, icons
-│   ├── index.html            # main entry
-│   ├── about.html            # about page
-│   ├── contact.html          # contact page
-│   ├── app.js                # AngularJS module, controllers, services
-│   └── styles.css            # custom styling
-│
-├── AngularJs_eCommerceShop/
-│   ├── assets/
-│   ├── index.html
-│   ├── search.html           # product search demo
-│   ├── app.js
-│   └── styles.css
-│
-└── README.md                 # this file
+│   ├── assets/               # images, icons  
+│   ├── index.html            # main entry  
+│   ├── about.html            # about page  
+│   ├── contact.html          # contact page  
+│   ├── app.js                # AngularJS module, controllers, services  
+│   └── styles.css            # custom styling  
+│  
+├── AngularJs_eCommerceShop/  
+│   ├── assets/  
+│   ├── index.html  
+│   ├── search.html           # product search demo  
+│   ├── app.js  
+│   └── styles.css  
+│  
+└── README.md                 # this file  
 
 ## Getting Started
 
@@ -94,7 +94,7 @@ npm install -g http-server
 ## Technologies
 
 - AngularJS 1.x  
-- HTML5 / CSS3  
+- HTML5 / CSS3  / BootStrap 5
 - Vanilla JavaScript  
 
 No build step—this is purely static frontend code.
