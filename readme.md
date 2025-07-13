@@ -44,9 +44,9 @@ Each app is purely frontend—just open its `index.html` in a browser (or serve 
 - Simple routing via multiple HTML pages (`about.html`, `contact.html`, etc.)
 
 ## Project Structure
-AngularJS_ProductAndCartFeatures/
-├── AngularJS_JwelleryShop/
-│   ├── assets/               # images, icons  
+AngularJS_ProductAndCartFeatures/   
+├── AngularJS_JwelleryShop/  
+│   ├── assets/               # images, icons    
 │   ├── index.html            # main entry  
 │   ├── about.html            # about page  
 │   ├── contact.html          # contact page  
